@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "DongSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/dirPagination.js"></script>
+<script src="~/Scripts/Controller/CustomerController.js"></script>
+<div ng-app="CustomerApp">
+    <div id="slideshow">
+        <div>
+            <img id="slide" src='~/image/1.jpg' />
+            <i class="fas fa-angle-left" id='left' onclick='Back()' style='position: absolute;top: 360px; left:0px; font-size: 50px;border-radius: 25px;color: #72c4db;'></i>
+            <i class="fas fa-angle-right" id='right' onclick='Next()' style='position: absolute;top: 360px; right:0px; font-size: 50px;border-radius: 25px;color: #72c4db;'></i>
+        </div>
+    </div>
+    <div class=head style="width: 100%;height: 55px; display: flex;" ng-controller="SanPhamController1">
+
+        <div class="sort" style="height: 55px;width: 150px;padding-top: 15px;padding-left: 740px;">
+            <select name="sort-price" id="sort-price" style="height:35px;width:150px;" ng-model="sortcolumn">
+                <option value="TenSP">Tên sản phẩm</option>
+                <option value="MaSP" selected="selected">Mã sản phẩm</option>
+            </select>
+        </div>
+        <div>
+            Sorting direction:
+            <input type="button" value="{{dr}}" ng-click="Chon(dr)" />
+        </div>
+    </div>
+    <div id='row'>
+        <div id="search-re" style="height: 1500px;display: none;">
+        </div>
+
+        <div id="main" ng-controller="SanPhamTheoDongController">
+            <!-- <input type="button" id='btn-sort' value="Sắp xếp theo giá"></input> -->
+            <div style="position: relative;">
+                <lable style="font-size: 25px;color: rgb(35, 165, 182);">Sản Phẩm</lable>
+                <div style="width:180px;height:2px;background-color: rgb(206, 206, 206);"></div>
+            </div>
+            <div class="col-3 col-m-6 col-s-12" ng-repeat="s in LSanPhams">
+                <div id="0" class="product">
+                    <a ng-click="" href="/CTSanPham/Index">
+                        <img class="product-img" src="~/image/{{s.AnhTo}}" />
+                    </a>
+
+                    @*<img class="product-img" src="~/image/product-images/{{s.CatId}}/{{s.Anhto}}" />*@
+                    <a href="laptop-chitiet.html"> <label class="product-name">{{s.TenSP}}</label></a>
+                    Giá cũ: <s class='old-price'>{{s.Gia}}</s> <br />
+                    <input type="button" class="btn-buy" value="CHỌN MUA" />
+
+                    <input type="button" onclick="location=' laptop-chitiet.html'" class="btn-view" value="CHI TIẾT" />
+                </div>
+            </div>
+            @*<dir-pagination-controls max-size="maxSize"
+                                         direction-links="true"
+                                         boundary-links="true"
+                                         on-page-change="LaySanPhamTheoLoai(newPageNumber)">
+
+                </dir-pagination-controls>*@
+            <div style="clear: both"></div>
+
+
+        </div>
+    </div>
+
+</div>
+
+
+
+

@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/dirPagination.js"></script>
+<script src="~/Scripts/Controller/CustomerController.js"></script>
+<link href="~/css/style_Cart.css" rel="stylesheet" />
+<div ng-controller="CartController">
+    <div id='main-cart'>
+        <div id='row'>
+
+            <div id="top-main">
+                <div class="item">
+                    <ul>
+                        <li><a href="/Home/Index">Trang chủ</a> </li>
+                        <li> <label>/</label><a href="#">Giỏ Hàng</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div id="product-cart" style="min-height: 500px">
+                <div id="product-header">
+                    <div class="col-5">
+                        <div class="col-8">Tên Sản Phẩm</div>
+                        <div class="col-4">Ảnh</div>
+                    </div>
+                    <div class="col-7">
+                        <div class="col-3">Đơn Giá</div>
+                        <div class="col-4">Số Lượng</div>
+                        <div class="col-3">Thành Tiền</div>
+                        <div class="col-2">Thao Tác</div>
+                    </div>
+                </div>
+                <div style="width: 100%; height: 1px; background-color: #DDD;"></div>
+                <div id="product-main" ng-repeat="data in dsDonHang" style="height:150px">
+                    <div class="col-5">
+                        <div class="col-8">{{data.TenSP}}</div>
+                        <div class="col-4"> <img style="height: 80px; width: 80px" src="~/image/{{data.Anh}}" /></div>
+
+                    </div>
+                    <div id="right-product-header" class="col-7">
+                        <div class="col-3">{{data.DonGia| number}} đ</div>
+                        <div class="col-4"><input type="number" ng-change="TinhTong()"  ng-model="data.SoLuong" style="width:35px"  /></div>
+                        <div class="col-3">{{data.SoLuong*data.DonGia| number}} đ</div>
+                        <div class="col-2"><button ng-click="Delete(data.MaSP) "><i class="fas fa-trash-alt"></i></button></div>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+            <div id="product-footer">
+                <div id="bottom-product-footer">
+                    <div class="col-4">
+                        <label>Tổng thanh toán (</label>
+                        <label ng-change="TongSL()" ng-model="SL">{{SL}}</label>
+                        <label> Sản phẩm)</label>
+                    </div>
+                    <div class="col-4" style="text-align: right;">
+                        <label class="total-price" >{{Tong| number}} đ</label>
+                    </div>
+                    <div class="col-4">
+                        <a><input ng-click="KiemTraDangNhap()" data-toggle="modal" data-target="{{DangNhap}}" type="button" class="btn-muahang" value="Đặt hàng"/></a>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both"></div>
+           
+        </div>
+     </div>
+ </div>

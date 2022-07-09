@@ -1,0 +1,262 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Areas/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Areas/Areas/Scripts/test-bundles/angular.min.js"></script>
+<script src="~/Areas/Areas/Scripts/Controller/AdminController.js"></script>
+<!-- Begin Page Content -->
+
+<div class="container-fluid" ng-controller="SanPhamController">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Quản lí sản phẩm</h1>
+        <button type="button" class="btn btn-primary" ng-click="Add()" data-toggle="modal" data-target="#AddProductModal">
+            <i class="fas fa-plus"></i> Thêm sản phẩm
+        </button>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+        <!--Hiển thị thông tin ds sản phẩm-->
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Mã Dòng</th>
+                    <th scope="col">Mã SP</th>
+                    <th scope="col">Tên SP</th>
+                    <th scope="col">Số Máy</th>
+                    <th scope="col">Số Seri</th>
+                    <th scope="col">Ảnh To</th>
+                    <th scope="col">Ảnh Nhỏ</th>
+                    <th scope="col">Giá</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in SanPhams">
+                    <th scope="col">{{data.MaDong}}</th>
+                    <th scope="col">{{data.MaSP}}</th>
+                    <th scope="col">{{data.TenSP}}</th>
+                    <th scope="col">{{data.SoMay}}</th>
+                    <th scope="col">{{data.SoSeri}}</th>
+                    <th scope="col"><img style="height: 80px; width: 80px" src="~/image/{{data.AnhTo}}" /></th>
+                    <th scope="col"><img style="height: 80px; width: 80px" src="~/image/{{data.AnhNho}}" /></th>
+                    <th scope="col">{{data.Gia}}</th>
+                    <th scope="col">
+                        <button ng-click="Delete(data)"><i class="fas fa-trash-alt"></i></button>
+                        <button ng-click="Edit(data)" type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditProductModal"><i class="fas fa-edit"></i></button>
+                        <button ng-click="SelectSanPham(data.MaSP) " type="button" class="btn btn-primary" data-toggle="modal" data-target="#EditProductModal"><i class="fas fa-edit"></i></button>
+                    </th>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="btn-prev-next-page" style="padding-left: 47%">
+            <button class="prev-page" ng-click="GetSanPhamListM()" style="border-radius:50%; width:30px"><i class="fas fa-angle-left content-icon"></i></button>
+            <button class="next-page" ng-click="GetSanPhamListP()" style="border-radius:50%; width:30px"><i class="fas fa-angle-right content-icon"></i></button>
+    </div>
+
+    <!-- Modal thêm -->
+    <div class="modal fade" id="AddProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-left: 230px;">
+            <div class="modal-content" style="width: 850px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Thêm sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                            <tr>
+                                <td>Mã Dòng</td>
+                                <td>
+                                    <select ng-model="sanpham.MaDong">
+                                        <option ng-repeat="l in listDong " value="{{l.MaDong}}">{{l.TenDong}}</option>
+                                    </select>
+                                </td>
+                                <td>Ma SP</td>
+                                <td><input ng-model="sanpham.MaSP" /></td>
+                            </tr>
+                            <tr>
+                                <td>Ten SP</td>
+                                <td><input ng-model="sanpham.TenSP" /></td>
+                                <td>Số Máy</td>
+                                <td><input type="text" ng-model="sanpham.SoMay" /></td>
+                            </tr>
+
+
+                            <tr>
+                                <td>Số Seri</td>
+                                <td><input type="text" ng-model="sanpham.SoSeri" /></td>
+                                <td>Ảnh To</td>
+                                <td><input type="file" multiple="multiple" ngf-select="UploadFile($file,'AnhTo')" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Ảnh Nhỏ</td>
+                                <td><input type="file" multiple="multiple" ngf-select="UploadFile($file,'AnhNho')" /></td>
+                                <td>Giá</td>
+                                <td><input type="text" ng-model="sanpham.Gia" /></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <p><b>Thông số kỹ thuật</b></p>
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>MaSP</td>
+                                <td><input type="text" ng-model="sanpham.MaSP" /></td>
+                                <td>CPU</td>
+                                <td><input type="text" ng-model="sanpham.CPU" /></td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td><input type="text" ng-model="sanpham.RAM" /></td>
+                                <td>Bộ Nhớ</td>
+                                <td><input type="text" ng-model="sanpham.BoNho" /></td>
+                            </tr>
+                            <tr>
+                                <td>Cam Sau</td>
+                                <td><input type="text" ng-model="sanpham.CamSau" /></td>
+                                <td>Cam Trước</td>
+                                <td><input type="text" ng-model="sanpham.CamTruoc" /></td>
+                            </tr>
+                            <tr>
+                                <td>Dung Lượng Pin</td>
+                                <td><input type="text" ng-model="sanpham.DungLuongPin" /></td>
+                                <td>Trọng Lượng</td>
+                                <td><input type="text" ng-model="sanpham.TrongLuong" /></td>
+                            </tr>
+                            <tr>
+                                <td>Độ phân giải màn hình</td>
+                                <td><input type="text" ng-model="sanpham.DoPhanGiaiManHinh" /></td>
+                                <td>Sim</td>
+                                <td><input type="text" ng-model="sanpham.Sim" /></td>
+                            </tr>
+                            <tr>
+                                <td>Cổng kết nối</td>
+                                <td><input type="text" ng-model="sanpham.CongKetNoi" /></td>
+                                <td>Bảo mật</td>
+                                <td><input type="text" ng-model="sanpham.BaoMat" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveTSKT()">Save TSKT</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveAdd()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal sửa-->
+    <div class="modal fade" id="EditProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-left: 230px;">
+            <div class="modal-content" style="width: 850px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Sửa sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered">
+
+                        <tbody>
+                            <tr>
+                                <td>Mã Dòng</td>
+                                <td>
+                                    <select ng-model="sanpham.MaDong">
+                                        <option ng-repeat="l in listDong " value="{{l.MaDong}}">{{l.TenDong}}</option>
+                                    </select>
+                                </td>
+                                <td>Ma SP</td>
+                                <td><input ng-model="sanpham.MaSP" /></td>
+                            </tr>
+                            <tr>
+                                <td>Ten SP</td>
+                                <td><input ng-model="sanpham.TenSP" /></td>
+                                <td>Số Máy</td>
+                                <td><input type="text" ng-model="sanpham.SoMay" /></td>
+                            </tr>
+
+
+                            <tr>
+                                <td>Số Seri</td>
+                                <td><input type="text" ng-model="sanpham.SoSeri" /></td>
+                                <td>Ảnh To</td>
+                                <td><input type="file" multiple="multiple" ngf-select="UploadFile($file,'AnhTo')" /></td>
+                            </tr>
+
+                            <tr>
+                                <td>Ảnh Nhỏ</td>
+                                <td><input type="file" multiple="multiple" ngf-select="UploadFile($file,'AnhNho')" /></td>
+                                <td>Giá</td>
+                                <td><input type="text" ng-model="sanpham.Gia" /></td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <p><b>Thông số kỹ thuật</b></p>
+                    <table class="table table-bordered" ng-controller="ThongSoKyThuatController">
+                        <tbody>
+                            <tr>
+                                <td>MaSP</td>
+                                <td><input type="text"  value="{{TSKT.MaSP}}" /></td>
+                                <td>CPU</td>
+                                <td>
+                                    <input type="text"   value="{{TSKT.CPU}}" /></td>
+                            </tr>
+                            <tr>
+                                <td>RAM</td>
+                                <td><input type="text"  value="{{TSKT.RAM}}" /></td>
+                                <td>Bộ Nhớ</td>
+                                <td><input type="text"  value="{{TSKT.BoNho}}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Cam Sau</td>
+                                <td><input type="text"  value="{{TSKT.CamSau}}" /></td>
+                                <td>Cam Trước</td>
+                                <td><input type="text" value="{{TSKT.CamTruoc}}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Dung Lượng Pin</td>
+                                <td><input type="text" value="{{TSKT.DungLuongPin}}" /></td>
+                                <td>Trọng Lượng</td>
+                                <td><input type="text" value="{{TSKT.TrongLuong}}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Độ phân giải màn hình</td>
+                                <td><input type="text" value="{{TSTK.DoPhanGiaiManHinh}}" /></td>
+                                <td>Sim</td>
+                                <td><input type="text" value="{{TSTK.Sim}}" /></td>
+                            </tr>
+                            <tr>
+                                <td>Cổng kết nối</td>
+                                <td><input type="text" value="{{TSTK.CongKetNoi}}" /></td>
+                                <td>Bảo mật</td>
+                                <td><input type="text" value="{{TSTK.BaoMat}}" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveEdit()">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container-fluid -->

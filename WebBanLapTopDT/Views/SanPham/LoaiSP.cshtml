@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "LoaiSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/angular.min.js"></script>
+<script src="~/Scripts/dirPagination.js"></script>
+<script src="~/Scripts/Controller/CustomerController.js"></script>
+<div  ng-controller="SanPhamController1">
+    <div id="slideshow">
+        <div>
+            <img id="slide" src='~/image/1.jpg' />
+            <i class="fas fa-angle-left" id='left' onclick='Back()' style='position: absolute;top: 390px; left:0px; font-size: 50px;border-radius: 25px;color:  rgba(0,0,0,.54);'></i>
+            <i class="fas fa-angle-right" id='right' onclick='Next()' style='position: absolute;top: 390px; right:0px; font-size: 50px;border-radius: 25px;color:  rgba(0,0,0,.54);'></i>
+        </div>
+    </div>
+    <div>
+        <div class=head style="width: 100%;height: 55px; display: flex;">
+
+            <div class="sort" style="height: 55px;width: 150px;margin-top: 50px; padding-left: 840px;">
+                <p style="width: 140px;height: 20px;float:left;margin-bottom: 0px;margin-top: 7px;">
+                    Sorting Field Name
+                </p>
+                <select name="sort-price" id="sort-price" style="height:35px;width:150px;" ng-model="sortcolumn">
+                    <option value="TenSP">Tên sản phẩm</option>
+                    <option value="MaSP" selected="selected">Mã sản phẩm</option>
+                    <option value="Gia" selected="selected">Giá</option>
+                </select>
+            </div>
+            <div>
+                Sort direction
+                <input style="margin-left: 40px;width: 149px;" type="button" value="{{direct}}" ng-click="Chon(direct)" />
+            </div>
+        </div>
+        <div id='row'>
+            <div id="search-re" style="height: 1500px;display: none;">
+            </div>
+            <div id="main">
+                <div style="position: relative;">
+                    <lable style="font-size: 25px;color: rgb(35, 165, 182);">SẢN PHẨM</lable>
+                    <div style="width:180px;height:2px;background-color: rgb(206, 206, 206);"></div>
+                </div>
+                <div class="col-3 col-m-6 col-s-12" style="float: left" ng-repeat="s in  lstLoai|orderBy:sortcolumn:reverse" >
+                    <div class="product">
+                        <a ng-click="SelectSanPham(s.MaSP)" href="/CTSanPham/Index">
+                            <img class="product-img" src="~/image/{{s.AnhTo}}" />
+                        </a>
+                        <a style=" color: rgba(8, 8, 8, 0.6);font-weight: bold;text-transform: uppercase;height: 70px;"
+                           ng-click="SelectSanPham(s.MaSP) " href="/CTSanPham/Index">
+                            <label class="product-name">{{s.TenSP}}</label>
+                        </a>
+                        <b style="color:#a11f2b; font-size: 18px" class='old-price'>{{s.Gia|number }} đ</b> <br />
+                        <input type="button" class="btn-buy" ng-click="AddCart(s)" value="CHỌN MUA" />
+                        <input type="button" ng-click="SelectSanPham(s.MaSP) "  onclick="location=' /CTSanPham/Index'" class="btn-view" value="CHI TIẾT" />
+                    </div>
+                </div>
+                
+                <div style="clear: both"></div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+
+
+

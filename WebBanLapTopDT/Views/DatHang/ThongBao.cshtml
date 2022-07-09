@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "ThongBao";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/DatHang.css" rel="stylesheet" />
+<div id="main" ng-controller="DatHangController">
+    <div class='success'>
+        <div class="content1">
+            <i class="fas fa-check-circle"></i><br />
+            <label>Đặt hàng thành công</label>
+            @*<p>Mã số đơn hàng của bạn là <a href="#">{{data.MaDonHang}}</a></p>*@
+            <p>Bạn có thể xem chi tiết đơn hàng trong <a href="#">đơn mua</a></p>
+            <p>Cảm ơn bạn đã đặt hàng!</p>
+            <p>Chúc bạn một ngày tốt lành!</p>
+            <a href="/Home/Index"> <input type="button" value="Về trang chủ" /></a>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+
+
+</div>
+

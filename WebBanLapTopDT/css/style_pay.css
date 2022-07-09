@@ -1,0 +1,205 @@
+body{
+	/* font-family: arial; */
+	font-family: 'Lato',Sans-Serif;
+	background-repeat: repeat;
+	background-position: center;
+	
+}
+*{
+	box-sizing: border-box;
+}
+
+[class*="col-"] {
+	float: left;
+    padding-top: 0px;
+}
+.row::after {
+	content: "";
+	clear: both;
+	display: table;
+}
+@media only screen and (min-width: 992px){
+	.col-1{width: 8.33%;}
+	.col-2{width: 16.66%;}
+	.col-3{width: 25%;}
+	.col-4{width: 33.33%;}
+	.col-5{width: 41.66%;}
+	.col-6{width: 50%;}
+	.col-7{width: 58.33%;}
+	.col-8{width: 66.66%;}
+	.col-9{width: 75%;}
+	.col-10{width: 83.33%;}
+	.col-11{width: 91.66%;}
+	.col-12{width: 100%;}
+}
+#main1{
+	background-color:#f8f8f8;
+	min-height: 1000px;
+}
+#row1{
+	min-height: 800px;
+}
+.dc{
+
+	width:100%;
+	height:280px;
+	background-color:white;
+	margin-bottom: 20px;
+	padding-left: 20px; 
+	border-radius: 5px;
+	border: none;
+	box-shadow: 2px 2px 2px 2px #ececec;
+}
+#dc-left{
+	text-align: center;
+}
+#dc-right input{
+	margin:  16px;
+	width:300px;
+	height: 30px;
+}
+
+@media only screen and (min-width: 992px){
+	.col-1{width: 8.33%;}
+	.col-2{width: 16.66%;}
+	.col-3{width: 25%;}
+	.col-4{width: 33.33%;}
+	.col-5{width: 41.66%;}
+	.col-6{width: 50%;}
+	.col-7{width: 58.33%;}
+	.col-8{width: 66.66%;}
+	.col-9{width: 75%;}
+	.col-10{width: 83.33%;}
+	.col-11{width: 91.66%;}
+	.col-12{width: 100%;}
+}
+#main-cart{
+    min-height: 1000px;
+    background-color: #fcfcfc;
+    width: 100%;
+}
+
+#product-cart{
+    width: 100%;
+    min-height: 165px;
+    background-color: white;
+    border-radius: 3px;
+    padding-bottom: 10px;
+    box-shadow: 2px 2px 2px 2px #ececec;
+	margin-bottom: 20px;
+}
+
+#product-header{
+    width: 100%;
+    height: 55px;
+    background-color: white;
+    border-radius: 3px;
+    margin-top: 10px;
+    font-size: 14.5px;
+    line-height: 55px;
+    text-align: center;
+    color: #888;
+}
+
+#product-main{
+    text-align: center;
+    height: 100px;
+}
+
+#pthuc{
+	width:100%;
+	min-height:200px;
+	background-color:white;
+	
+	border-radius: 5px;
+	line-height: 2;
+	padding-left: 20px;
+	border: none;
+	box-shadow: 2px 2px 2px 2px #ececec;
+}
+#payment{
+	width:100%;
+	min-height:200px;
+	border-radius: 5px;
+	line-height: 2;
+	padding-left: 70%;
+	
+	padding-top: 20px;
+}
+.money{
+	line-height: 40px;
+	padding-top: 10px;
+	float: left;
+	padding-left: 20px;
+}
+.btn-payment{
+	width:300px;
+	height: 40px;
+	float: left; 
+	margin-left:20px;
+	background-color: #72c4db;
+	border: none;
+	color: white;
+	font-size: 15px;
+	margin-top: 10px;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.total-price{
+	width: 50%;
+	float: right;
+	font-size:25px;
+	color: red;
+	line-height:60px;
+}
+/* ĐƠN MUA */
+.total{
+	float: right;
+	margin-right: 10px;
+	line-height: 50px;
+}
+.tong{
+	color: red;
+	font-size: 20px;
+}
+.btn-mualai{
+	width: 150px;
+	height: 35px;
+	border: none;
+	background-color: rgb(233, 27, 27);
+	color: white;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+.btn-lienhe{
+	font-size: 16px;
+		width: 150px;
+		height: 35px;
+		border: none;
+		background-color: #e0dede;
+		border-radius: 5px;
+		cursor: pointer;
+}
+
+.total label{
+	padding-left: 40px;
+}
+.infor-vc a{
+	text-decoration: none;
+}
+.shop{
+	width: 250px;
+	height: 50px;
+	
+}
+.infor-vc i{
+	color: #72c4db;
+	font-size: 18px;
+}
+.giaohang{
+	float: right;
+	line-height: 40px;
+	margin-top: -30px;
+}

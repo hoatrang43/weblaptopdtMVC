@@ -1,0 +1,123 @@
+body{
+    margin:0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    font-family: sans-serif;
+    width: 100%;
+    height: 100%;
+}
+#header{
+    width: 100%;
+    height: 50px;
+    background-color: rgb(54, 42, 42);
+    color: white;
+}
+#content{
+    width:100%;
+    height: 700px;
+   display: flex;
+   /* flex-direction: row; */
+}
+.content-left{
+    height: 1200px;
+    width: 300px;
+    padding-top: 5px; 
+}
+.content-right{
+    height: 600px;
+    width: 1500px;
+    background-color: cadetblue;
+   
+}
+
+.menu {
+    width:100%;
+    height: 50px;
+    display: flex;
+}
+.menu ul li {
+	float: left;
+	padding: 0px 10px;
+	position: relative;
+    list-style: none;
+}
+.menu ul li li {
+	float: none;
+	padding: 0px;
+    text-align: center;
+}
+.menu ul ul {
+	background-color: #ddd;
+	display: none;
+}
+.menu ul li a {
+	display: block;
+	line-height: 30px;
+	font-weight: bold;
+	color: #FFF;
+	font-size: 14px;
+	text-decoration: none;
+	text-transform: uppercase;
+	padding: 0px 10px;
+}  
+.btn-group{
+    width: 300px;
+    height: 55px;
+}
+#btnGroupDrop1{
+    width: 300px;
+    height: 55px;
+}
+.dropdown-menu{
+    width: 300px;
+    height: 250px;
+}
+.dropdown-item{
+    width: 300px;
+    height: 50px;
+}
+/* .btn-primary{
+    background-color: #ddd !important;
+    color: black  !important;
+    border-color: black  !important;
+} */
+.text-primary{
+    text-decoration: none;
+}
+.text-center img{
+    height: 45px;
+    width: 45px;
+}
+.species-img table-img change-img img{
+    width: 100px !important;
+    height: 100px  !important;
+}
+#menu{
+    color: white;
+    }
+    
+    .item-title{
+    cursor: pointer;
+    background-color: #08b2ed;
+    line-height: 36px;
+    border-top: 1px solid dimgrey;
+    border-bottom: 1px solid dimgrey;
+    }
+    
+    .left-item ul li{
+    background-color: dimgrey;
+    line-height: 36px;
+    }
+#menu ul li{
+    text-align:left
+}
+#menu ul li{
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ccc;
+    list-style: none;
+    padding-left: 0;
+    text-decoration: none;
+    border-left: 0;
+}

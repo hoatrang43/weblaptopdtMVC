@@ -1,0 +1,271 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<html>
+<head>
+    <title>LAPTOP STORE</title>
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/dirPagination.js"></script>
+    <script src="~/Scripts/Controller/CustomerController.js"></script>
+    <link href="~/css/laptop.css" rel="stylesheet" />
+ 
+    <link rel="stylesheet" type="text/css"
+          href="~/fontawesome/css/all.min.css" />
+    <style type="text/CSS"></style>
+    <script src="~/js/jquery-3.6.0.min.js" type='text/javascript'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+
+    <div id="main" style="min-height: 1500px" ng-app="CustomerApp">
+
+        <div class="sp"  ng-controller="ChiTietConTroller">
+            <div id="container">
+                <div class="item">
+                    <ul>
+                        <li><a href="#" title="Go to Home page">Trang chủ</a> </li>
+                        <li> <label>/</label><a href="#">{{Product.TenSP}}</a></li>
+                    </ul>
+
+                </div>
+            </div>
+
+            <div class="col-6 col-m-6 col-s-12">
+
+                <div class="product1">
+                    <img src="~/image/{{Product.AnhTo}}" style="height: 450px; width: 90%" id='img-main' />
+                </div>
+                <div class="product2">
+                    <ul>
+                        <li><img src="~/image/{{Product.AnhTo}}" onclick="ChangeImage('one')" id='one' /></li>
+                        <li><img src="~/image/{{Product.AnhNho}}" onclick="ChangeImage('two')" id='two' /></li>
+                        <li><img src="~/image/{{Product.AnhNho}}" onclick="ChangeImage('three')" id='three' /></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6 col-m-6 col-s-12">
+                <div class="chitiet">
+                    <h2 class="product-name">{{Product.TenSP}}</h2>
+                    <br />
+
+                    <div class="price-detail" style="padding-top: 10px;"><label><b>{{Product.Gia|number}} đ</b></label></div>
+                    <br />	<br />
+
+                    <div class="transport">
+                        <img src="~/image/vc.png" />
+                        <ul>
+                            <li>Vận chuyển tới: <b>Huyện Mỹ Hào, Tỉnh Hưng Yên</b> </li>
+                            <li>Phí vận chuyển: <b>46.000đ</b> </li>
+                        </ul>
+                    </div>
+                    <div style="height: 50px; width:200px; margin-top: 20px">
+                        <p style="float:left; padding-right:20px;">Số Lượng	</p>
+                        <div class="order-amount">
+                            <input class="btn-sub" type="button" value="-" />
+                            <input class="txt-amount" type="text" name="quantity" value="1" />
+                            <input class="btn-plus" type="button" value="+" />
+                        </div>
+                    </div>
+                   
+                        <!-- <input onclick='subAmount("a")' class="btn-sub" type="button" value="-"/>
+                    <input id='a' class="txt-amount" type="text" value="1"/>
+                    <input onclick='plusAmount("a")' class="btn-plus" type="button" value="+"/> -->
+
+                        <br />                      
+                        <div class="buy" ng-controller="SanPhamController1">
+                            <a href=""><input type="button" ng-click="AddCart(Product)" class="btn-them" value="THÊM VÀO GIỎ HÀNG" /></a>
+                            <a href="#"><input type="button" class="btn-mua" value="MUA NGAY" /></a>
+                        </div>
+                </div>
+            </div>
+            <div class="col-12 col-m-12 col-s-12">
+                <div class="content" ng-controller="ThongSoKyThuatController">
+                    <label >THÔNG SỐ KỸ THUẬT </label>
+
+                    <div class="infor-detail">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <td class="left_ct">CPU</td>
+                                    <td class="right_ct">{{TSKT.CPU}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">RAM</td>
+                                    <td class="right_ct">{{TSKT.RAM}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Bộ Nhớ</td>
+                                    <td class="right_ct">{{TSKT.BoNho}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Camera Sau</td>
+                                    <td class="right_ct">{{TSKT.CamSau}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Camera Trước</td>
+                                    <td class="right_ct">{{TSKT.CamTruoc}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Dung Lượng Pin</td>
+                                    <td class="right_ct">{{TSKT.DungLuongPin}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Trọng Lượng(kg)</td>
+                                    <td class="right_ct">{{TSKT.TrongLuong}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Độ Phân Giải Màn Hình</td>
+                                    <td class="right_ct">{{TSKT.DoPhanGiaiManHinh}} </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Sim</td>
+                                    <td class="right_ct">{{TSKT.Sim}}</td>
+                                </tr>
+                                <tr>
+                                    <td class="left_ct">Cổng Kết Nối</td>
+                                    <td class="right_ct">{{TSKT.CongKetNoi}}</td>
+                                </tr>
+                                <tr>
+
+                                    <td class="left_ct">Bảo Mật</td>
+                                    <td class="right_ct">{{TSKT.BaoMat}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src='~/js/imageChange.js'></script>
+    
+   
+
+
+</body>
+
+</html>
+
+@*<div id="main" ng-app="CustomerApp">
+
+        <div class="sp" style="min-height:1000px" ng-controller="ChiTietConTroller">
+            <h3> CHI TIẾT SẢN PHẨM </h3>
+            <div>
+                <div class="col-6 col-m-6 col-s-12">
+
+                    <div class="product1">
+                        <img src="~/image/{{Product.AnhTo}}" id='img-main' />
+                    </div>
+                    <div class="product2">
+                        <ul>
+                            <li><img src="~/image/{{Product.AnhTo}}" onclick="ChangeImage('one')" id='one' /></li>
+                            <li><img src="~/image/{{Product.AnhTo}}" onclick="ChangeImage('two')" id='two' /></li>
+                            <li><img src="~/image/{{Product.AnhTo}}" onclick="ChangeImage('three')" id='three' /></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-6 col-m-6 col-s-12">
+                    <div class="chitiet">
+                        <h2 class="product-name" style="color: rgba(8, 8, 8, 0.6); text-transform:uppercase"><b>{{Product.TenSP}}</b></h2><br /><br />
+                        Giá: <b style="color:#a11f2b; font-size: 20px">{{Product.Gia}}</b> <br /><br />
+
+                        <p style="float:left; padding-right:20px;">Vận chuyển	<p>
+                            <div class="transport">
+                                <img src="~/image/vc.png" />
+                                <ul>
+                                    <li>Vận chuyển tới:  Huyện Mỹ Hào, Tỉnh Hưng Yên</li>
+                                    <li>Phí vận chuyển:  46.000đ</li>
+                                </ul>
+                            </div>
+                        <p style="float:left; padding-right:20px;">Số Lượng	<p>
+                            <div class="order-amount">
+                                <input class="btn-sub" type="button" value="-" />
+                                <input class="txt-amount" type="text" name="quantity" value="1" />
+                                <input class="btn-plus" type="button" value="+" />
+                            </div>
+                             <input onclick='subAmount("a")' class="btn-sub" type="button" value="-"/>
+                            <input id='a' class="txt-amount" type="text" value="1"/>
+                            <input onclick='plusAmount("a")' class="btn-plus" type="button" value="+"/>
+
+                            <br />
+                            <br />
+                            <br />
+                            <div class="buy">
+                                <a href=""><input type="button" class="btn-them" value="THÊM VÀO GIỎ HÀNG" /></a>
+                                <a href="#"><input type="button" class="btn-mua" value="MUA NGAY" /></a>
+                            </div>
+                    </div>
+                </div>
+                <div class="col-12 col-m-12 col-s-12">
+                    <h3>THÔNG TIN CHI TIẾT </h3>
+                    <div class="infor-detail">
+                        <table>
+                            <tr>
+                                <td class="a">RAM</td>
+                                <td class="b">8GB</td>
+                            </tr>
+                            <tr>
+                                <td class="a">Độ phân giải</td>
+                                <td class="b1">Full HD (1920 x 1080)</td>
+                            </tr>
+                            <tr>
+                                <td class="a">Kích thước màn hình</td>
+                                <td class="b">14 inch</td>
+                            </tr>
+                            <tr>
+                                <td class="a">Hệ điều hành</td>
+                                <td class="b1">Windows 10 Home</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="col-12 col-m-12 col-s-12">
+                    <h3>MÔ TẢ</h3>
+                    <div class="decribe">
+                        <h4><b>Gọn nhẹ và di chuyển dễ dàng</b></h4>
+                        <p>
+                            Laptop Asus ZenBook UX425EA-BM069T có thiết kế hoàn toàn bằng kim loại, siêu nhẹ,
+                            mỏng và gọn gang. Điều này khiến nó trở thành người bạn đồng hành lý tưởng trong những
+                            chuyến công tác. Đó cũng là chiếc laptop 14-inch mỏng nhất thế giới với đầy đủ các cổng kết nối — bao gồm HDMI và USB Type-A —
+                            để bạn có thể tận hưởng tính năng kết nối linh hoạt dù ở bất kỳ đâu.
+                        <p>
+                            <h4><b>Bản lề ErgoLift được chế tạo chính xác</b></h4>
+                        <p>
+                            ZenBook 14 có bản lề ErgoLift được chế tạo chính xác giúp tự động nâng phần sau của
+                            laptop một cách từ từ khi mở nắp máy, nghiêng bàn phím tới góc gõ tối ưu.
+                            Thao tác này cũng nâng khung máy cho chất lượng âm thanh nâng cao và khả năng làm mát tối ưu.
+                        </p>
+                        <h4><b>Màn hình NanoEdge 14 inch</b></h4>
+                        <p>
+                            ZenBook 14 có màn hình NanoEdge sáng và rõ nét với bốn viền màn hình mỏng cho tỷ lệ
+                            màn hình trên thân máy 90% giúp mang lại trải nghiệm xem chìm đắm hơn.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>*@
+
+
+
+
+
